@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -18,12 +17,12 @@
 
             <TextView
                 android:id="@+id/textViewTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-
-                android:text="Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text=""
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="#000000" />
 
             <TextView
@@ -33,8 +32,7 @@
                 android:layout_below="@id/textViewTitle"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-
-                android:text="13.3 Inch, 256 GB"
+                android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <TextView
@@ -44,11 +42,10 @@
                 android:layout_below="@id/textViewDescription"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-
                 android:background="@color/colorPrimary"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="4.7"
+                android:text=""
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
                 android:textStyle="bold" />
 
@@ -59,9 +56,7 @@
                 android:layout_below="@id/textViewTime"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
