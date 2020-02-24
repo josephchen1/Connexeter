@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
                         tasksNum.setText("Number of tasks: " + tasks.size());
                         FileHelper.writeData(tasks, getActivity());
 
-                        Toast.makeText(getActivity(), "Item Added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Task Created", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -74,8 +74,9 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tasks.remove(position);
                 adapter.notifyDataSetChanged();
+                FileHelper.writeData(tasks, getActivity());
                 tasksNum.setText("Number of tasks: " + tasks.size());
-                Toast.makeText(getActivity(), "Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Task Completed", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
