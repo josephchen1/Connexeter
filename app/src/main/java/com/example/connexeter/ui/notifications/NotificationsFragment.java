@@ -21,13 +21,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+//TODO: use SimpleDateFormat to compare startTimes; separate Time to startTime and endTime
+//TODO: so you can compare startTime and organize it like so, make sure when comparing
+//TODO: that they share the same date!!!!
+
+
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
     public RecyclerView recyclerView;
     List<Event> eventList;
     Long tsLong = System.currentTimeMillis();
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,51 +54,121 @@ public class NotificationsFragment extends Fragment {
 
         eventList.add(
                 new Event (
-                        1,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/21/2020"
+
+                        "A Cappella Showcase",
+                        "The Bowld",
+                        "8:00 PM",
+                        "02/07/2020"
                 )
         );
-
         eventList.add(
                 new Event (
-                        2,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/22/2020"
+
+                        "Abbot Casino",
+                        "Grainger Auditorium",
+                        "8:00 PM",
+                        "02/08/2020"
                 )
         );
-
-
         eventList.add(
                 new Event (
-                        3,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/23/2020"
+
+                        "Boston Standup Comedy",
+                        "Assembly Hall",
+                        "9:00 PM",
+                        "02/15/2020"
                 )
         );
-
         eventList.add(
                 new Event (
-                        4,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/24/2020"
+
+                        "Asian Cultural Showcase",
+                        "Assembly Hall",
+                        "8:00 PM",
+                        "02/22/2020"
                 )
         );
-
         eventList.add(
                 new Event (
-                        5,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/25/2020"
+
+                        "Pep Rally",
+                        "Love Gym",
+                        "8:30 PM",
+                        "02/28/2020"
                 )
         );
-
         eventList.add(
-                new Event (6,"WinterFest", "Little Winter Festival on Weth Quad", "11:00 to 3:00", "02/26/2020"
+                new Event (
+
+                        "The Secret Garden",
+                        "Goel Theater",
+                        "7:00 PM",
+                        "02/21/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "The Secret Garden",
+                        "Goel Theater",
+                        "7:00 PM",
+                        "02/22/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "The Secret Garden",
+                        "Goel Theater",
+                        "1:00 PM",
+                        "02/23/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "Stand Up Comedy 2 Electric Boogaloo",
+                        "Phelps Commons",
+                        "9:00 PM",
+                        "02/22/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "Winter Festival",
+                        "Wetherell Quad",
+                        "12:00 PM to 3:00 PM",
+                        "02/29/2020"
                 )
         );
 
-        for (int x = 0; x<eventList.size(); x++) {
-            if (tsLong>(eventList.get(x).getDateMS())) {
-                Toast.makeText(getActivity(), "Task Completed", Toast.LENGTH_SHORT).show();
-                eventList.remove(x);
-                x--;
+
+
+
+
+        for (int x = 0; x<eventList.size()-1; x++) {
+            if (eventList.get(x+1).getDateMS()<(eventList.get(x).getDateMS())) {
+                Toast.makeText(getActivity(), "Reorganized by Date", Toast.LENGTH_SHORT).show();
+                Event temp = eventList.get(x+1);
+                eventList.remove(x+1);
+                eventList.add(x, temp);
+                x=0;
             }
         }
 
+
+
+//        for (int x = 0; x<eventList.size(); x++) {
+//            if (tsLong>(eventList.get(x).getDateMS())) {
+//                Toast.makeText(getActivity(), "Task Completed", Toast.LENGTH_SHORT).show();
+//                eventList.remove(x);
+//                x--;
+//            }
+//        }
+
         //creating recyclerview adapter
         EventAdapter adapter = new EventAdapter(getActivity(), eventList);
-
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 

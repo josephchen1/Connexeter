@@ -2,27 +2,22 @@ package com.example.connexeter.ui.notifications;
 
 
 import java.text.ParseException;
+import java.util.Comparator;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Event {
 
-    private int id;
     private String title, description, time, date;
     SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy");
 
-    public Event(int id, String title, String description, String time, String date) {
-        this.id=id;
+    public Event(String title, String description, String time, String date) {
         this.title=title;
         this.description=description;
         this.time=time;
         this.date=date;
     }
 
-
-    public int getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;
