@@ -1,14 +1,18 @@
 package com.example.connexeter.ui.notifications;
 
 
+import android.widget.ToggleButton;
+
+
 import java.text.ParseException;
-import java.util.Comparator;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Event {
 
     private String title, description, startTime, endTime, date;
+    private boolean toggle;
+    ToggleButton toggleNotif;
     SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy");
     SimpleDateFormat t = new SimpleDateFormat("h:mm a");
 
@@ -18,6 +22,7 @@ public class Event {
         this.startTime = startTime;
         this.date = date;
         this.endTime = "";
+        this.toggle = false;
     }
 
     public Event(String title, String description, String startTime, String endTime, String date) {
@@ -26,8 +31,17 @@ public class Event {
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
+        this.toggle = false;
     }
 
+
+    public boolean getToggle () {
+        return toggle;
+    }
+
+    public void setToggle(boolean f) {
+        this.toggle = f;
+    }
 
     public String getTitle() {
         return title;

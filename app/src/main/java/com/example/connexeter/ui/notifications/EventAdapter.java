@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +46,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             holder.textViewTime.setText(event.getStartTime());
         }
         holder.textViewDate.setText(event.getDate());
+        holder.toggleNotif.setChecked(event.getToggle());
+        event.setToggle(event.getToggle());
     }
 
     @Override
@@ -53,6 +58,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     class EventViewHolder extends RecyclerView.ViewHolder{
 
         TextView textViewTitle, textViewDescription, textViewTime, textViewDate;
+        ToggleButton toggleNotif;
 
         public EventViewHolder(View eventView) {
             super(eventView);
@@ -61,6 +67,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewTime = itemView.findViewById(R.id.textViewTime);
             textViewDate = itemView.findViewById(R.id.textViewDate);
+            toggleNotif = itemView.findViewById(R.id.toggleNotif);
+
 
         }
     }
