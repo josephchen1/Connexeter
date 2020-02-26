@@ -1,19 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/OLS"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/time3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginLeft="10sp"
+        android:paddingLeft="10sp"
+        android:text="_8_00_8_55"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="15sp"
+        android:text="this_will_read_the_date"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/dateChange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/weekNumber"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allFormats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+                <!--        <LinearLayout-->
+                <!--            android:id="@+id/formatTLayout"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_marginLeft="15sp"-->
+                <!--            android:layout_marginRight="15sp"-->
+                <!--            android:layout_marginBottom="15sp"-->
+                <!--            android:background="@drawable/class_shape"-->
+                <!--            android:orientation="vertical"-->
+                <!--            android:visibility="visible">-->
+
+                <!--            <LinearLayout-->
+                <!--                android:id="@+id/initialInfo"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="match_parent"-->
+                <!--                android:orientation="horizontal">-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/time1"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_margin="0sp"-->
+                <!--                    android:layout_marginLeft="10sp"-->
+                <!--                    android:paddingLeft="10sp"-->
+                <!--                    android:text="@string/_8_00_8_55"-->
+                <!--                    android:textSize="24sp"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    android:layout_marginStart="10sp" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/formatT"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:gravity="right"-->
+                <!--                    android:paddingRight="10sp"-->
+                <!--                    android:text="@string/t"-->
+                <!--                    android:textSize="30sp"-->
+                <!--                    android:textStyle="bold" />-->
+                <!--            </LinearLayout>-->
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/classAName"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:paddingLeft="10sp"-->
+                <!--                android:paddingRight="10sp"-->
+                <!--                android:text="@string/input_class_name_here"-->
+                <!--                android:textSize="18sp" />-->
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/classALevel"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:paddingLeft="10sp"-->
+                <!--                android:text="(XYZ-###)" />-->
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/classARoomNumber"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:paddingLeft="10sp"-->
+                <!--                android:text="Input room number" />-->
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/classATeacherName"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:paddingLeft="10sp"-->
+                <!--                android:text="Input teacher name" />-->
+                <!--        </LinearLayout>-->
+
+            
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
