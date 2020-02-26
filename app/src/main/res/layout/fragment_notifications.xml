@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+
+    <Switch
+        android:id="@+id/showSwitch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Events"
-        android:textSize="28dp"
-        app:fontFamily="sans-serif-condensed" />
+        android:layout_marginLeft="20dp"
+        android:checked="true"
+        android:text="Hide Past Events" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="56dp" />
 
 </RelativeLayout>
