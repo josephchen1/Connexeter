@@ -210,6 +210,42 @@ public class NotificationsFragment extends Fragment {
                         "02/23/2020"
                 )
         );
+        eventList.add(
+                new Event (
+
+                        "Shrove Tuesday Pancake DInner",
+                        "Phillips Church",
+                        "6:00 PM",
+                        "02/25/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "Bus to Mall & Movies",
+                        "Tan Lane",
+                        "5:30 PM",
+                        "02/22/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "Bus to Mall & Movies",
+                        "Tan Lane",
+                        "5:30 PM",
+                        "02/29/2020"
+                )
+        );
+        eventList.add(
+                new Event (
+
+                        "Exeter Association of Rock Concert",
+                        "Phelps Commons",
+                        "8:00 PM",
+                        "02/28/2020"
+                )
+        );
 
         for (int x = 0; x<eventList.size()-1; x++) {
             if (eventList.get(x+1).getDateMS()<(eventList.get(x).getDateMS())) {
