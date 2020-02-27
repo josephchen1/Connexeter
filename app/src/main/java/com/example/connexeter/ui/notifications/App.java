@@ -3,6 +3,7 @@ package com.example.connexeter.ui.notifications;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.os.Build;
 
 public class App extends Application {

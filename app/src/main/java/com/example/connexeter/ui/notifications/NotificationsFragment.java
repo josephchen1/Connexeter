@@ -1,12 +1,15 @@
 package com.example.connexeter.ui.notifications;
 
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.sax.RootElement;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +41,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.app.Application.getProcessName;
+import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.connexeter.ui.notifications.App.CHANNEL_1_ID;
-
-//TODO: use SimpleDateFormat to compare startTimes; separate Time to startTime and endTime
-//TODO: so you can compare startTime and organize it like so, make sure when comparing
-//TODO: that they share the same date!!!!
 
 
 public class NotificationsFragment extends Fragment {
@@ -57,44 +58,50 @@ public class NotificationsFragment extends Fragment {
     List<Event> eventList;
     Long tsLong = System.currentTimeMillis();
 
-    public void sendOnChannel1(View v) {
-        String title = "hi";
-        String message = "bye";
+    public void sendOnChannel1(Event event, int x) {
 
-        Notification notification = new NotificationCompat.Builder(getContext(), CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_1)
+        String title = event.getTitle();
+        String message = event.getDate() + " " + event.getStartTime();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_1_ID)
                 .setContentTitle(title)
                 .setContentText(message)
-                .build();
+                .setSmallIcon(R.drawable.ic_1);
+
+
+        Intent intent = new Intent((getContext()), getActivity().getClass());
+        PendingIntent activity = PendingIntent.getActivity(getContext(), x, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        builder.setContentIntent(activity);
+        Notification notification = builder.build();
 
         notificationManager.notify(1, notification);
+        Intent notificationIntent = new Intent(getContext(), App.class);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, x);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), x, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + event.getStartTimeMS() - System.currentTimeMillis() - 1800000;
+
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
-    public void sendOnChannel2(View v) {
 
-
-    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         notificationManager = NotificationManagerCompat.from(getContext());
+
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         eventList = new ArrayList<>();
         recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         final Switch showPast = (Switch) root.findViewById(R.id.showSwitch);
-        final Button notifBtn = (Button) root.findViewById(R.id.notifBtn);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         SharedPreferences pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         showPast.setChecked(pref.getBoolean("value", true));
 
-        notifBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-               sendOnChannel1(getView());
-            }
-        });
-
-        if(showPast.isChecked()) {
+        if (showPast.isChecked()) {
             add();
             Toast.makeText(getActivity(), "Hiding past events", Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor edit = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE).edit();
@@ -118,23 +125,6 @@ public class NotificationsFragment extends Fragment {
             add();
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
-
-        /*for (int x = 0; x < eventList.size(); x++) {
-            RelativeLayout layout = (RelativeLayout) getActivity().findViewById(R.id.eventLayout);
-            ToggleButton toggleNotif = (ToggleButton) layout.findViewById(R.id.toggleNotif);
-            toggleNotif.setChecked(eventList.get(x).getToggle());
-            toggleNotif.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Toast.makeText(getActivity(), "pls work", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity(), "pls dont work", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-        }*/
 
         showPast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -176,8 +166,7 @@ public class NotificationsFragment extends Fragment {
 
     public void add() {
         eventList.add(
-                new Event (
-
+                new Event(1,
                         "A Cappella Showcase",
                         "The Bowld",
                         "8:00 PM",
@@ -185,17 +174,16 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(2,
                         "Abbot Casino",
                         "Grainger Auditorium",
                         "8:00 PM",
                         "02/08/2020"
+
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(3,
                         "Boston Standup Comedy",
                         "Assembly Hall",
                         "9:00 PM",
@@ -203,8 +191,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(4,
                         "Asian Cultural Showcase",
                         "Assembly Hall",
                         "8:00 PM",
@@ -212,8 +199,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(5,
                         "Pep Rally",
                         "Love Gym",
                         "8:30 PM",
@@ -221,8 +207,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(6,
                         "The Secret Garden",
                         "Goel Theater",
                         "7:00 PM",
@@ -230,8 +215,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(7,
                         "The Secret Garden",
                         "Goel Theater",
                         "7:00 PM",
@@ -239,8 +223,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(8,
                         "The Secret Garden",
                         "Goel Theater",
                         "1:00 PM",
@@ -248,8 +231,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(9,
                         "Stand Up Comedy 2 Electric Boogaloo",
                         "Phelps Commons",
                         "9:00 PM",
@@ -257,8 +239,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(10,
                         "Winter Festival",
                         "Wetherell Quad",
                         "12:00 PM",
@@ -267,8 +248,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(11,
                         "Shrove Tuesday Pancake DInner",
                         "Phillips Church",
                         "6:00 PM",
@@ -276,8 +256,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(12,
                         "Bus to Mall & Movies",
                         "Tan Lane",
                         "5:30 PM",
@@ -285,8 +264,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(13,
                         "Bus to Mall & Movies",
                         "Tan Lane",
                         "5:30 PM",
@@ -294,8 +272,7 @@ public class NotificationsFragment extends Fragment {
                 )
         );
         eventList.add(
-                new Event (
-
+                new Event(14,
                         "Exeter Association of Rock Concert",
                         "Phelps Commons",
                         "8:00 PM",
@@ -303,26 +280,33 @@ public class NotificationsFragment extends Fragment {
                 )
         );
 
-        for (int x = 0; x<eventList.size()-1; x++) {
-            if (eventList.get(x+1).getDateMS()<(eventList.get(x).getDateMS())) {
-                Event temp = eventList.get(x+1);
-                eventList.remove(x+1);
+        for (int x = 0; x < eventList.size() - 1; x++) {
+            if (eventList.get(x + 1).getDateMS() < (eventList.get(x).getDateMS())) {
+                Event temp = eventList.get(x + 1);
+                eventList.remove(x + 1);
                 eventList.add(x, temp);
-                x=0;
+                x = 0;
             }
         }
 
-        for (int x = 0; x<eventList.size()-1; x++) {
-            if (eventList.get(x+1).getDateMS()==(eventList.get(x).getDateMS())) {
-                if (eventList.get(x+1).getStartTimeMS()<(eventList.get(x).getStartTimeMS())) {
-                    Event temp = eventList.get(x+1);
-                    eventList.remove(x+1);
+        for (int x = 0; x < eventList.size() - 1; x++) {
+            if (eventList.get(x + 1).getDateMS() == (eventList.get(x).getDateMS())) {
+                if (eventList.get(x + 1).getStartTimeMS() < (eventList.get(x).getStartTimeMS())) {
+                    Event temp = eventList.get(x + 1);
+                    eventList.remove(x + 1);
                     eventList.add(x, temp);
-                    x=0;
+                    x = 0;
                 }
             }
         }
 
+        //TODO: see if works!
+        for (int x = 0; x < eventList.size(); x++) {
+            if (eventList.get(x).getStartTimeMS() > (System.currentTimeMillis() - 86400000)) {
+                eventList.get(x).setId(x);
+                sendOnChannel1(eventList.get(x), x);
+            }
+        }
 
     }
 
