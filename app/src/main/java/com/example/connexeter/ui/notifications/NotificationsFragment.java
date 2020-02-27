@@ -80,7 +80,7 @@ public class NotificationsFragment extends Fragment {
         notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), x, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + event.getStartTimeMS() - System.currentTimeMillis() - 1800000;
+        long futureInMillis = SystemClock.elapsedRealtime() + event.getDateMS() + event.getStartTimeMS() - System.currentTimeMillis() - 1800000;
 
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
@@ -280,6 +280,24 @@ public class NotificationsFragment extends Fragment {
                 )
         );
 
+        eventList.add(
+                new Event(14,
+                        "Exeter Association of Rock Concert",
+                        "Phelps Commons",
+                        "8:00 PM",
+                        "02/28/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(14,
+                        "test",
+                        "Phelps Commons",
+                        "1:25 PM",
+                        "02/27/2020"
+                )
+        );
+
         for (int x = 0; x < eventList.size() - 1; x++) {
             if (eventList.get(x + 1).getDateMS() < (eventList.get(x).getDateMS())) {
                 Event temp = eventList.get(x + 1);
@@ -300,9 +318,9 @@ public class NotificationsFragment extends Fragment {
             }
         }
 
-        //TODO: see if works!
+        //TODO: see if works! nvm fix it
         for (int x = 0; x < eventList.size(); x++) {
-            if (eventList.get(x).getStartTimeMS() > (System.currentTimeMillis() - 86400000)) {
+            if (eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS() > (System.currentTimeMillis() - 86400000)) {
                 eventList.get(x).setId(x);
                 sendOnChannel1(eventList.get(x), x);
             }
