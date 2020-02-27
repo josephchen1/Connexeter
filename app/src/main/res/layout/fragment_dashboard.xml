@@ -9,25 +9,13 @@
     android:visibility="visible">
 
     <TextView
-        android:id="@+id/time3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="0sp"
-        android:layout_marginStart="10sp"
-        android:layout_marginLeft="10sp"
-        android:paddingLeft="10sp"
-        android:text="_8_00_8_55"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
         android:layout_marginRight="15sp"
         android:layout_marginBottom="15sp"
-        android:text="this_will_read_the_date"
+        android:text="@string/this_will_read_the_date"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -46,7 +34,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allFormats"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible">
