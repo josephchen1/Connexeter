@@ -27,7 +27,7 @@ public class addOLSAdapter extends RecyclerView.Adapter<addOLSAdapter.ProductVie
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.add_class,null);
+        View view = inflater.inflate(R.layout.add_class, parent, false);
         ProductViewHolder holder = new ProductViewHolder(view);
         return new ProductViewHolder(view);
     }

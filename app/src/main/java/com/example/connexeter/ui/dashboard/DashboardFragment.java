@@ -31,10 +31,14 @@ public class DashboardFragment extends Fragment {
 
     DashboardViewModel dashboardViewModel;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView;//for printing ols info
     addOLSAdapter adapter;
-
     List<addOLS> addOLSList;
+
+    RecyclerView inputClassRecyclerView; //for user input of ols info
+    inputClassAdapter adapterOLSInput;
+    List<inputClass> inputClassList;
+
 
 
 //    private RecyclerView className;
@@ -46,8 +50,19 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+//input ols thing  THIS NEEDS TO BE INITIALIZED IN A NEW WINDOW AFTER HITTING A BUTTON
+        inputClassList = new ArrayList<>();
+        inputClassRecyclerView = (RecyclerView) root.findViewById(R.id.inputClassRecyclerView);
+        inputClassRecyclerView.setHasFixedSize(true);
+        inputClassRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//ols thing
+        inputClassList.add(new inputClass("A Format Class:"));
+        inputClassList.add(new inputClass("B Format Class"));
+        inputClassList.add(new inputClass("C Format Class"));
+
+
+
+//printing ols thing
         addOLSList = new ArrayList<>();
 
         recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
@@ -60,6 +75,14 @@ public class DashboardFragment extends Fragment {
         addOLSList.add(
                 new addOLS(1,"B","Biology","BIO-320",
                         "PHP-302", "Mr. Matlack")
+        );
+        addOLSList.add(
+                new addOLS(1,"C","English","ENG-420",
+                        "ACB-202", "Mr. Griffith")
+        );
+        addOLSList.add(
+                new addOLS(1,"D","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
         );
         adapter = new addOLSAdapter(getActivity(),addOLSList);
         recyclerView.setAdapter(adapter);
@@ -80,4 +103,7 @@ public class DashboardFragment extends Fragment {
         return root;
     }
 
+    public void confirmButton(View v){
+
+    }
 }

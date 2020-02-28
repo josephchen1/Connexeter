@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:paddingRight="10sp"
-            android:text="t"
+            android:text="T"
             android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>

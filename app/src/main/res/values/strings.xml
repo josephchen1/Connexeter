@@ -19,6 +19,18 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="this_will_read_the_date">this_will_read_the_date</string>
+    <string name="date">Smth, ##, ####</string>
     <string name="Time">8:00-8:55</string>
+    <string name="input_the_following_prompts">A Format Class:</string>
+    <string name="class_name">Class Name</string>
+    <string name="level">Level</string>
+    <string name="confirm">Confirm</string>
+    <string name="mat_420">MAT-420</string>
+    <string name="request_class_name">Class Name:</string>
+    <string name="request_room_number">Room Number:</string>
+    <string name="request_class_level">Class Level:</string>
+    <string name="class_name_hint">Math</string>
+    <string name="Room_number_hint">ACB-123</string>
+    <string name="request_teacher">Teacher:</string>
+    <string name="teacher_name_hint">Mr. Awesome</string>
 </resources>
