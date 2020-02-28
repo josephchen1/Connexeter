@@ -17,7 +17,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions 'defaultConfig'
+    productFlavors {
+        defaultConfig {
+            dimension = 'defaultConfig'
+            minSdkVersion 29
+            targetSdkVersion 29
+        }
+    }
 }
+
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -30,6 +40,20 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.preference:preference:1.1.0'
     testImplementation 'junit:junit:4.13'
+
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Add the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+
+    apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+    // Add the SDKs for any other Firebase products you want to use in your app
+    // For example, to use Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
+
+    // Getting a "Could not find" error? Make sure that you've added
+    // Google's Maven repository to your root-level build.gradle file
 }

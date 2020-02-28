@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1058964916123",
+    "firebase_url": "https://connexeter.firebaseio.com",
+    "project_id": "connexeter",
+    "storage_bucket": "connexeter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058964916123:android:883c4de26c0e485033033e",
+        "android_client_info": {
+          "package_name": "com.example.connexeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058964916123-k7hm8jv9p2ajhcbnl3ckreioh0uakqqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRJ5adW42KmhQJRoAb0DkM4YihIBBPiew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058964916123-k7hm8jv9p2ajhcbnl3ckreioh0uakqqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

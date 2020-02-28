@@ -59,6 +59,11 @@ public class DashboardFragment extends Fragment {
         inputClassList.add(new inputClass("A Format Class:"));
         inputClassList.add(new inputClass("B Format Class"));
         inputClassList.add(new inputClass("C Format Class"));
+        inputClassList.add(new inputClass("D Format Class"));
+        inputClassList.add(new inputClass("E Format Class"));
+        inputClassList.add(new inputClass("F Format Class"));
+        inputClassList.add(new inputClass("G Format Class"));
+        inputClassList.add(new inputClass("H Format Class"));
 
 
 
