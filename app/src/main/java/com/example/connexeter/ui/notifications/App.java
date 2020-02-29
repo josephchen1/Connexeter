@@ -8,8 +8,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 
-import com.example.connexeter.MainActivity;
-
 public class App extends Application {
 
     public static final String CHANNEL_1_ID = "channel1";
@@ -19,19 +17,22 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //creates the Notification Channels
         createNotificationChannels();
 
+        //creates a Notification using the InAppReminderBroadcast class
         Intent intent = new Intent(getApplicationContext(), InAppReminderBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 200, intent, 0);
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        long delay = System.currentTimeMillis() + 7*1000;
+        //sets delay of notification and schedules it appropriately
+        long delay = System.currentTimeMillis() + 20*1000;
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, delay, pendingIntent);
 
     }
 
+    //creates two notification channels with different settings
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel1 = new NotificationChannel(
@@ -46,7 +47,7 @@ public class App extends Application {
             NotificationChannel channel2 = new NotificationChannel(
                     CHANNEL_2_ID,
                     "Event Alert2",
-                    NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_LOW
 
             );
 

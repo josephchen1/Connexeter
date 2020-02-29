@@ -1,5 +1,8 @@
 package com.example.connexeter.ui.home;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,8 @@ import com.example.connexeter.R;
 
 import java.util.ArrayList;
 
+import static android.content.Context.ALARM_SERVICE;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -32,10 +37,9 @@ public class HomeFragment extends Fragment {
     private ArrayAdapter<String> adapter;
 
 
-
     @Override
-    public View onCreateView (@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        sendOnChannel3();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         btn = (Button) view.findViewById(R.id.add_btn);
         itemET = view.findViewById(R.id.task_edit_text);
@@ -53,10 +57,11 @@ public class HomeFragment extends Fragment {
         tasksNum = (TextView) view.findViewById(R.id.tasks_num);
         tasksNum.setText("Number of tasks: " + tasks.size());
 
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch(v.getId()) {
+                switch (v.getId()) {
                     case R.id.add_btn:
                         String itemEntered = itemET.getText().toString();
                         adapter.add(itemEntered);
@@ -84,6 +89,17 @@ public class HomeFragment extends Fragment {
 
     }
 
+    public void sendOnChannel3() {
+        Intent notificationIntent = new Intent(getContext(), TodoTabNotifBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 199, notificationIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
+
+        long futureInMillis = System.currentTimeMillis();
+
+        //makes sure that the event that is to be notified has not already started
+        alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+        //Log.d("NOTIFJO", "add notif" + event.getTitle() + (futureInMillis-System.currentTimeMillis()) + "futureInMillis");
+    }
 
 
 }

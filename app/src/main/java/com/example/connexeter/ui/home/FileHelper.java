@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+//writes and reads data of tasks
 public class FileHelper {
 
     public static final String FILENAME = "listinfo.dat";

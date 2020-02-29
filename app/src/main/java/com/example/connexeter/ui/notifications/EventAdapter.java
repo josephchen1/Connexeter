@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +32,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         return holder;
     }
 
+    //sets values for events via saved data
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
@@ -46,7 +44,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             holder.textViewTime.setText(event.getStartTime());
         }
         holder.textViewDate.setText(event.getDate());
-        event.setToggle(event.getToggle());
     }
 
     @Override
@@ -58,6 +55,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
         TextView textViewTitle, textViewDescription, textViewTime, textViewDate;
 
+        //saves data of each events' information
         public EventViewHolder(View eventView) {
             super(eventView);
 

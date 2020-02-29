@@ -1,11 +1,5 @@
 package com.example.connexeter.ui.notifications;
 
-
-import android.widget.ToggleButton;
-
-
-import com.example.connexeter.R;
-
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -14,13 +8,10 @@ public class Event {
 
     private String title, description, startTime, endTime, date;
     private int id;
-    private boolean toggle;
-    ToggleButton toggleNotif;
     SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy");
     SimpleDateFormat t = new SimpleDateFormat("h:mm a");
 
-
-
+    //Event constructor for events that have no specified or known ending time
     public Event(int id, String title, String description, String startTime, String date) {
         this.id = id;
         this.title = title;
@@ -28,9 +19,9 @@ public class Event {
         this.startTime = startTime;
         this.date = date;
         this.endTime = "";
-        this.toggle = false;
     }
 
+    //Event constructor for events that have a specified or known ending time
     public Event(int id, String title, String description, String startTime, String endTime, String date) {
         this.id = id;
         this.title = title;
@@ -38,22 +29,13 @@ public class Event {
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
-        this.toggle = false;
     }
-    public int getId() {
-        return id;
-    }
+
+    //setters and gettings for event attributes
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean getToggle () {
-        return toggle;
-    }
-
-    public void setToggle(boolean f) {
-        this.toggle = f;
     }
 
     public String getTitle() {
@@ -68,6 +50,7 @@ public class Event {
         return startTime;
     }
 
+    //gets start time in Unix time, or Epoch Time
     public long getStartTimeMS() {
         try {
             Date y = t.parse(startTime);
@@ -86,6 +69,7 @@ public class Event {
         return date;
     }
 
+    //gets start date in Unix time, or Epoch Time
     public long getDateMS() {
         try {
             Date d = f.parse(date);
