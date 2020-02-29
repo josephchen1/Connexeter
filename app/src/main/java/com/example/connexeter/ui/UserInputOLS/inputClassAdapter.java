@@ -27,7 +27,7 @@ public class inputClassAdapter extends RecyclerView.Adapter<inputClassAdapter.in
     @Override
     public inputClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.user_input_class, null);
+        View view = inflater.inflate(R.layout.user_input_class, parent,false);
         return new inputClassViewHolder(view);
     }
 
@@ -44,10 +44,8 @@ public class inputClassAdapter extends RecyclerView.Adapter<inputClassAdapter.in
 
     class inputClassViewHolder extends RecyclerView.ViewHolder {
         TextView formatLetter;
-
         public inputClassViewHolder(@NonNull View itemView) {
             super(itemView);
-
             formatLetter = itemView.findViewById(R.id.formatLetter);
         }
     }
