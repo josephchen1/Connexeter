@@ -53,7 +53,6 @@ public class addOLSAdapter extends RecyclerView.Adapter<addOLSAdapter.ProductVie
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-
             format = itemView.findViewById(R.id.format);
             className = itemView.findViewById(R.id.className);
             classLevel = itemView.findViewById(R.id.classLevel);
