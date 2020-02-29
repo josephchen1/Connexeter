@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,50 +25,77 @@ import java.util.Locale;
 public class DashboardFragment extends Fragment {
 
     DashboardViewModel dashboardViewModel;
-    ArrayList<addOLS> formatList;
-    private RecyclerView className;
-    private RecyclerView classLevel;
-    private RecyclerView roomNumber;
-    private RecyclerView teacherName;
-    private RecyclerView format;
+    RecyclerView recyclerView;//for printing ols info
+    addOLSAdapter adapter;
+    List<addOLS> addOLSList;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        RecyclerView allFormats = root.findViewById(R.id.allFormats);
-        allFormats.setLayoutManager(new LinearLayoutManager(getActivity()));
+//printing ols thing
+        addOLSList = new ArrayList<>();
+        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        addOLSList.add(
+                new addOLS(1, "A", "Math", "MAT-420",
+                        "ACB-220", "Mr.Chen")
+        );
 
-        OlsAdapter adapter = new OlsAdapter(OlsAdapter.allFormats);
-        allFormats.setAdapter(adapter);
+        addOLSList.add(
+                new addOLS(1,"B","Biology","BIO-320",
+                        "PHP-302", "Mr. Matlack")
+        );
+        addOLSList.add(
+                new addOLS(1,"C","English","ENG-420",
+                        "ACB-202", "Mr. Griffith")
+        );
+        addOLSList.add(
+                new addOLS(1,"D","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
+        );
 
+        addOLSList.add(
+                new addOLS(1,"E","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
+        );
+
+        addOLSList.add(
+                new addOLS(1,"F","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
+        );
+
+        addOLSList.add(
+                new addOLS(1,"G","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
+        );
+
+        addOLSList.add(
+                new addOLS(1,"H","Japanese","JAP-120",
+                        "ACB-402", "Ms. Tazawa")
+        );
+
+        adapter = new addOLSAdapter(getActivity(),addOLSList);
+        recyclerView.setAdapter(adapter);
+
+        //date and time
         final String currentDate = new SimpleDateFormat("MMM, dd, yyyy", Locale.getDefault()).format(new Date());
         final TextView date = root.findViewById(R.id.date);
         date.setText(currentDate);
 
+        //dropdown menu
         Spinner setWeekNumber = (Spinner) root.findViewById(R.id.weekNumber);
-
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.reply_entries));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         setWeekNumber.setAdapter(myAdapter);
 
-//        setWeekNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()) {
-//            @Override
-//                    public void onItemSelectedListener(AdapterView<?> adapterView, View view, int i, long l);
-//        }
+
         return root;
     }
 
-    private ArrayList<addOLS> allClasses() {
-        ArrayList<addOLS> list = new ArrayList<>();
-        list.add(new addOLS(1, "A", "Math", "MAT-202",
-                "ACA323", "Dylan"));
-        list.add(new addOLS(1, "B", "English", "ENG-520",
-                "ACB-204", "Shen"));
+    public void confirmButton(View v){
 
-        return list;
     }
-
-
 }

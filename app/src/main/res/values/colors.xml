@@ -3,5 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="classT">#F54D4D</color>
+    <color name="class1">#F54D4D</color>
+    <color name="class2">#F3CB28</color>
+    <color name="class3">#00CDD3</color>
+    <color name="class4">#F3CB28</color>
+    <color name="class5">#658C8D</color>
+    <color name="class6">#F5F84A</color>
+    <color name="class7">#8960C1</color>
+    <color name="class8">#BAB7BE</color>
+    <color name="black">#000000</color>
 </resources>
