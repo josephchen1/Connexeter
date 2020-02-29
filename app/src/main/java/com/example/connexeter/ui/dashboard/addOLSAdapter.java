@@ -35,7 +35,6 @@ public class addOLSAdapter extends RecyclerView.Adapter<addOLSAdapter.ProductVie
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         addOLS product = productList.get(position);
-
         holder.format.setText(product.getFormat());
         holder.className.setText(product.getClassName());
         holder.classLevel.setText(product.getClassLevel());

@@ -1,7 +1,6 @@
-package com.example.connexeter.ui.dashboard;
+package com.example.connexeter.ui.UserInputOLS;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

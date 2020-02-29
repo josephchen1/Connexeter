@@ -1,9 +1,11 @@
 package com.example.connexeter;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.example.connexeter.ui.dashboard.DashboardViewModel;
 import com.example.connexeter.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    public void loadUserInputScreen(View v) {
+        setContentView(R.layout.user_input_class_info);
     }
 
     @Override

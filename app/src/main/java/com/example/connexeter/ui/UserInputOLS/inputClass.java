@@ -1,4 +1,4 @@
-package com.example.connexeter.ui.dashboard;
+package com.example.connexeter.ui.UserInputOLS;
 
 public class inputClass {
     private String formatLetter;
