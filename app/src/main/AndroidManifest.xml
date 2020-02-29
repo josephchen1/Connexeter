@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".ui.notifications.MyNotificationPublisher"/>
+        <receiver android:name=".ui.notifications.InAppReminderBroadcast"/>
+
     </application>
 
 </manifest>

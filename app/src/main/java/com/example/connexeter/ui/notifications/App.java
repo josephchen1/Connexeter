@@ -1,10 +1,14 @@
 package com.example.connexeter.ui.notifications;
 
+import android.app.AlarmManager;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
+
+import com.example.connexeter.MainActivity;
 
 public class App extends Application {
 
@@ -16,6 +20,16 @@ public class App extends Application {
         super.onCreate();
 
         createNotificationChannels();
+
+        Intent intent = new Intent(getApplicationContext(), InAppReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 200, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        long delay = System.currentTimeMillis() + 7*1000;
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, delay, pendingIntent);
+
     }
 
     private void createNotificationChannels() {
@@ -32,7 +46,7 @@ public class App extends Application {
             NotificationChannel channel2 = new NotificationChannel(
                     CHANNEL_2_ID,
                     "Event Alert2",
-                    NotificationManager.IMPORTANCE_LOW
+                    NotificationManager.IMPORTANCE_HIGH
 
             );
 

@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.sax.RootElement;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ import static android.app.Application.getProcessName;
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.connexeter.ui.notifications.App.CHANNEL_1_ID;
+import static com.example.connexeter.ui.notifications.App.CHANNEL_2_ID;
 
 
 public class NotificationsFragment extends Fragment {
@@ -56,34 +58,58 @@ public class NotificationsFragment extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     public RecyclerView recyclerView;
     List<Event> eventList;
+    List<Event> futureEventList = new ArrayList<>();
     Long tsLong = System.currentTimeMillis();
 
     public void sendOnChannel1(Event event, int x) {
 
-        String title = event.getTitle();
-        String message = event.getDate() + " " + event.getStartTime();
+        Intent notificationIntent = new Intent(getContext(), MyNotificationPublisher.class);
+        notificationIntent.putExtra(MyNotificationPublisher.TITLE, event.getTitle());
+        notificationIntent.putExtra(MyNotificationPublisher.DESC,event.getDate() + " " + event.getStartTime());
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, x);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), x, notificationIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_1_ID)
+
+        long futureInMillis = System.currentTimeMillis() + ((futureEventList.get(x).getDateMS()) + futureEventList.get(x).getStartTimeMS())-(System.currentTimeMillis()+19800000);
+        Log.d("NOTJO",  event.getTitle()+(futureEventList.get(x).getDateMS()) + "");
+        Log.d("NOTJO", futureEventList.get(x).getId() + " " + x);
+        Log.d("NOTIFJO", "time set " + futureInMillis + "for event" +event.getTitle());
+        if ((futureInMillis-System.currentTimeMillis())>= 0) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
+            Log.d("NOTIFJO", "add notif" + event.getTitle() + (futureInMillis-System.currentTimeMillis()) + "futureInMillis");
+        }
+
+    }
+
+    public void sendOnChannel2() {
+        String title = "Get to work!";
+        String message = "Let's strive for productivity today!";
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_2_ID)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_1);
 
 
         Intent intent = new Intent((getContext()), getActivity().getClass());
-        PendingIntent activity = PendingIntent.getActivity(getContext(), x, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent activity = PendingIntent.getActivity(getContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(activity);
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
         Notification notification = builder.build();
 
-        notificationManager.notify(1, notification);
+        notificationManagerCompat.notify(1, builder.build());
         Intent notificationIntent = new Intent(getContext(), App.class);
-        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, x);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, 1);
         notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), x, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 1, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + event.getDateMS() + event.getStartTimeMS() - System.currentTimeMillis() - 1800000;
+//        long futureInMillis = System.currentTimeMillis() + 15*1000;
+//        Log.d("NOTIFCH2", "set futureInMillis" + futureInMillis);
 
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, System.currentTimeMillis()+15*1000, pendingIntent);
+
     }
 
 
@@ -91,7 +117,7 @@ public class NotificationsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         notificationManager = NotificationManagerCompat.from(getContext());
-
+        Toast.makeText(getActivity(), "onCreateView", Toast.LENGTH_SHORT).show();
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         eventList = new ArrayList<>();
         recyclerView = root.findViewById(R.id.recyclerView);
@@ -100,6 +126,19 @@ public class NotificationsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         SharedPreferences pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         showPast.setChecked(pref.getBoolean("value", true));
+
+        add();
+        int y = 0;
+        for (int x = 0; x < eventList.size(); x++) {
+            if ((eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS()) > (System.currentTimeMillis() - 86400000)) {
+                eventList.get(x).setId(y);
+                futureEventList.add(eventList.get(x));
+                sendOnChannel1(futureEventList.get(y), y);
+                y++;
+                //Log.d("NOTIFJO", "add notif" +eventList.get(x).getTitle()+ " "+((eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS())-(System.currentTimeMillis()-86400000)));
+            }
+        }
+        eventList.clear();
 
         if (showPast.isChecked()) {
             add();
@@ -156,6 +195,14 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+
+        for (int x = 0; x < eventList.size(); x++) {
+                    if ((eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS()) > (System.currentTimeMillis() - 86400000)) {
+                        eventList.get(x).setId(x);
+                        sendOnChannel1(eventList.get(x), x);
+                        Log.d("NOTIFJO", ""+((eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS())-(System.currentTimeMillis()-86400000)));
+                    }
+                }
         //creating recyclerview adapter
         EventAdapter adapter = new EventAdapter(getActivity(), eventList);
         //setting adapter to recyclerview
@@ -281,20 +328,11 @@ public class NotificationsFragment extends Fragment {
         );
 
         eventList.add(
-                new Event(14,
-                        "Exeter Association of Rock Concert",
-                        "Phelps Commons",
-                        "8:00 PM",
-                        "02/28/2020"
-                )
-        );
-
-        eventList.add(
-                new Event(14,
+                new Event(15,
                         "test",
                         "Phelps Commons",
-                        "1:25 PM",
-                        "02/27/2020"
+                        "9:11 PM ",
+                        "02/28/2020"
                 )
         );
 
@@ -314,15 +352,8 @@ public class NotificationsFragment extends Fragment {
                     eventList.remove(x + 1);
                     eventList.add(x, temp);
                     x = 0;
-                }
-            }
-        }
 
-        //TODO: see if works! nvm fix it
-        for (int x = 0; x < eventList.size(); x++) {
-            if (eventList.get(x).getDateMS() + eventList.get(x).getStartTimeMS() > (System.currentTimeMillis() - 86400000)) {
-                eventList.get(x).setId(x);
-                sendOnChannel1(eventList.get(x), x);
+                }
             }
         }
 
