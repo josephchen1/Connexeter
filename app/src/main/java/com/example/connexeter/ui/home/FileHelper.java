@@ -15,6 +15,7 @@ public class FileHelper {
 
     public static final String FILENAME = "listinfo.dat";
 
+    //writes data
     public static void writeData(ArrayList<String> items, Context context) {
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -28,6 +29,7 @@ public class FileHelper {
         }
     }
 
+    //reads data
     public static ArrayList<String> readData (Context context) {
         ArrayList<String> itemsList = null;
         try {
@@ -35,16 +37,13 @@ public class FileHelper {
             ObjectInputStream ois = new ObjectInputStream(fis);
             itemsList = (ArrayList<String>) ois.readObject();
         } catch (FileNotFoundException e) {
-
             itemsList = new ArrayList<>();
-
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return itemsList;
     }
 }

@@ -28,7 +28,6 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     private EditText itemET;
     private Button btn;
     private ListView tasksList;
@@ -39,25 +38,22 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        sendOnChannel3();
+        sendMessage();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //initialize attributes and objects
         btn = (Button) view.findViewById(R.id.add_btn);
         itemET = view.findViewById(R.id.task_edit_text);
         tasksList = view.findViewById(R.id.tasks_list);
-
         tasks = FileHelper.readData(getActivity());
-
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, tasks);
-
-        tasksList.setAdapter(adapter);
-
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-
         tasksNum = (TextView) view.findViewById(R.id.tasks_num);
         tasksNum.setText("Number of tasks: " + tasks.size());
 
+        //set adapter
+        tasksList.setAdapter(adapter);
 
+        //set OnClickListener for button to add tasks
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +63,8 @@ public class HomeFragment extends Fragment {
                         adapter.add(itemEntered);
                         itemET.setText("");
                         tasksNum.setText("Number of tasks: " + tasks.size());
+
+                        //saves tasks and the data through FileHelper
                         FileHelper.writeData(tasks, getActivity());
 
                         Toast.makeText(getActivity(), "Task Created", Toast.LENGTH_SHORT).show();
@@ -80,7 +78,10 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tasks.remove(position);
                 adapter.notifyDataSetChanged();
+
+                //saves deletion of tasks and the data through FileHelper
                 FileHelper.writeData(tasks, getActivity());
+
                 tasksNum.setText("Number of tasks: " + tasks.size());
                 Toast.makeText(getActivity(), "Task Completed", Toast.LENGTH_SHORT).show();
             }
@@ -89,16 +90,15 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void sendOnChannel3() {
+    //sends notifications 
+    public void sendMessage() {
         Intent notificationIntent = new Intent(getContext(), TodoTabNotifBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 199, notificationIntent, 0);
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
 
         long futureInMillis = System.currentTimeMillis();
 
-        //makes sure that the event that is to be notified has not already started
         alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
-        //Log.d("NOTIFJO", "add notif" + event.getTitle() + (futureInMillis-System.currentTimeMillis()) + "futureInMillis");
     }
 
 
