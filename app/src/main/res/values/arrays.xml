@@ -1,12 +1,53 @@
 <resources>
     <!-- Reply Preference -->
     <string-array name="reply_entries">
-        <item>Week 1</item>
-        <item>Week 2</item>
+        <item>Edit Classes</item>
+        <item>Week 1, Monday</item>
+        <item>Week 1, Tuesday</item>
+        <item>Week 1, Wednesday</item>
+        <item>Week 1, Thursday</item>
+        <item>Week 1, Friday</item>
+        <item>Week 2, Monday</item>
+        <item>Week 2, Tuesday</item>
+        <item>Week 2, Wednesday</item>
+        <item>Week 2, Thursday</item>
+        <item>Week 2, Friday</item>
     </string-array>
 
     <string-array name="reply_values">
-        <item>Week 1</item>
-        <item>Week 2</item>
+        <item>Edit Classes</item>
+        <item>Week 1, Monday</item>
+        <item>Week 1, Tuesday</item>
+        <item>Week 1, Wednesday</item>
+        <item>Week 1, Thursday</item>
+        <item>Week 1, Friday</item>
+        <item>Week 2, Monday</item>
+        <item>Week 2, Tuesday</item>
+        <item>Week 2, Wednesday</item>
+        <item>Week 2, Thursday</item>
+        <item>Week 2, Friday</item>
     </string-array>
+
+    <string-array name="set_format_entries">
+        <item>A Format</item>
+        <item>B Format</item>
+        <item>C Format</item>
+        <item>D Format</item>
+        <item>E Format</item>
+        <item>F Format</item>
+        <item>G Format</item>
+        <item>H Format</item>
+    </string-array>
+
+    <string-array name="set_format_values">
+        <item>A Format</item>
+        <item>B Format</item>
+        <item>C Format</item>
+        <item>D Format</item>
+        <item>E Format</item>
+        <item>F Format</item>
+        <item>G Format</item>
+        <item>H Format</item>
+    </string-array>
+
 </resources>

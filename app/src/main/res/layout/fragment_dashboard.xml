@@ -1,130 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/OLS"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="56dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:accessibilityHeading="false"
+        android:gravity="end"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15sp"
+            android:layout_marginTop="20sp"
             android:layout_marginRight="15sp"
-            android:layout_marginBottom="15sp"
+            android:layout_weight="0.6"
             android:text="@string/date"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Spinner
+            android:id="@+id/weekNumber"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:gravity="end"
-            android:orientation="vertical">
-
-            <Spinner
-                android:id="@+id/weekNumber"
-                android:layout_width="150sp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10sp"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/EditClasses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="loadUserInputScreen"
-                android:text="@string/edit" />
-        </LinearLayout>
+            android:layout_marginEnd="10sp"
+            android:visibility="visible" />
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
-                <!--        <LinearLayout-->
-                <!--            android:id="@+id/formatTLayout"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"-->
-                <!--            android:layout_marginLeft="15sp"-->
-                <!--            android:layout_marginRight="15sp"-->
-                <!--            android:layout_marginBottom="15sp"-->
-                <!--            android:background="@drawable/class1"-->
-                <!--            android:orientation="vertical"-->
-                <!--            android:visibility="visible">-->
+        android:orientation="vertical">
 
-                <!--            <LinearLayout-->
-                <!--                android:id="@+id/initialInfo"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="match_parent"-->
-                <!--                android:orientation="horizontal">-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/time1"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_margin="0sp"-->
-                <!--                    android:layout_marginLeft="10sp"-->
-                <!--                    android:paddingLeft="10sp"-->
-                <!--                    android:text="@string/_8_00_8_55"-->
-                <!--                    android:textSize="24sp"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    android:layout_marginStart="10sp" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/formatT"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:gravity="right"-->
-                <!--                    android:paddingRight="10sp"-->
-                <!--                    android:text="@string/t"-->
-                <!--                    android:textSize="30sp"-->
-                <!--                    android:textStyle="bold" />-->
-                <!--            </LinearLayout>-->
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/classAName"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:paddingLeft="10sp"-->
-                <!--                android:paddingRight="10sp"-->
-                <!--                android:text="@string/input_class_name_here"-->
-                <!--                android:textSize="18sp" />-->
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/classALevel"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:paddingLeft="10sp"-->
-                <!--                android:text="(XYZ-###)" />-->
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/classARoomNumber"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:paddingLeft="10sp"-->
-                <!--                android:text="Input room number" />-->
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/classATeacherName"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:paddingLeft="10sp"-->
-                <!--                android:text="Input teacher name" />-->
-                <!--        </LinearLayout>-->
-
-            
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="visible" />
+    </LinearLayout>
 
 </LinearLayout>

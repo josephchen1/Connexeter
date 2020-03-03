@@ -2,19 +2,29 @@ package com.example.connexeter.ui.dashboard;
 
 public class addOLS {
     private int weekNumber;
+    private String time;
     private String format;
     private String className;
     private String classLevel;
     private String roomNumber;
     private String teacherName;
 
-    public addOLS(int weekNumber, String format, String className, String classLevel, String roomNumber, String teacherName) {
+    public addOLS(String time, int weekNumber, String format, String className, String classLevel, String roomNumber, String teacherName) {
+        this.time = time;
         this.weekNumber = weekNumber;
         this.format = format;
         this.className = className;
         this.classLevel = classLevel;
         this.roomNumber = roomNumber;
         this.teacherName = teacherName;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getWeekNumber() {

@@ -22,4 +22,5 @@
         android:name="com.example.connexeter.ui.notifications.NotificationsFragment"
         android:label="Events"
         tools:layout="@layout/fragment_notifications" />
+
 </navigation>

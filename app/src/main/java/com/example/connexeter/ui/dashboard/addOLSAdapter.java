@@ -35,6 +35,8 @@ public class addOLSAdapter extends RecyclerView.Adapter<addOLSAdapter.ProductVie
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         addOLS product = productList.get(position);
+
+        holder.time.setText(product.getTime());
         holder.format.setText(product.getFormat());
         holder.className.setText(product.getClassName());
         holder.classLevel.setText(product.getClassLevel());
@@ -49,10 +51,11 @@ public class addOLSAdapter extends RecyclerView.Adapter<addOLSAdapter.ProductVie
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView format, className, classLevel, roomNumber, teacherName;
+        TextView time, format, className, classLevel, roomNumber, teacherName;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
+            time = itemView.findViewById(R.id.time);
             format = itemView.findViewById(R.id.format);
             className = itemView.findViewById(R.id.className);
             classLevel = itemView.findViewById(R.id.classLevel);
