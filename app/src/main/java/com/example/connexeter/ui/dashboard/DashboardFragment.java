@@ -146,6 +146,70 @@ public class DashboardFragment extends Fragment {
                     adapter = new addOLSAdapter(getActivity(),addOLSList);
                     recyclerView.setAdapter(adapter);
                 }//week 1 Tuesday
+                if (i==3){
+                    addOLSList.clear();
+                    addOLSList.add(
+                            new addOLS("8:00-8:50",1, "C", "Your Class", "XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("8:55-9:45",1,"B","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    addOLSList.add(
+                            new addOLS("11:05-11:55",1,"E","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    addOLSList.add(
+                            new addOLS("12:00-12:50",1,"G","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    adapter = new addOLSAdapter(getActivity(),addOLSList);
+                    recyclerView.setAdapter(adapter);
+                }//week 1 Wednesday
+                if (i==4){
+                    addOLSList.clear();
+                    addOLSList.add(
+                            new addOLS("8:00-8:50",1, "V", "Your Class", "XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("8:55-9:45",1,"D","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    addOLSList.add(
+                            new addOLS("10:45-11:35",1,"A","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    addOLSList.add(
+                            new addOLS("11:40-12:50",1,"B Long","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("1:40-2:30",1,"X","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("2:35-3:25",1,"F","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("4:15-5:05",1,"G","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+
+                    addOLSList.add(
+                            new addOLS("5:10-6:00",1,"Q","Your Class","XYZ-###",
+                                    "XYZ-###", "Your teacher")
+                    );
+                    adapter = new addOLSAdapter(getActivity(),addOLSList);
+                    recyclerView.setAdapter(adapter);
+                }
                 if (i==6){ //week 2 Monday
                     addOLSList.clear();
                     addOLSList.add(
