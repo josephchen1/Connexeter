@@ -8,6 +8,8 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 
+import com.example.connexeter.ui.home.TodoTabNotifBroadcast;
+
 public class App extends Application {
 
     public static final String CHANNEL_1_ID = "channel1";
@@ -29,6 +31,11 @@ public class App extends Application {
         long delay = System.currentTimeMillis() + 20*1000;
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, delay, pendingIntent);
+
+        Intent todo = new Intent(getApplicationContext(), TodoTabNotifBroadcast.class);
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getApplicationContext(), 199, todo,0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent1);
 
     }
 
