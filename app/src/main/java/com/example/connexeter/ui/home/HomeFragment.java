@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        sendMessage();
+        //sendMessage();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //initialize attributes and objects
@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //deletes tasks on click
         tasksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
     }
 
     //sends notifications 
-    public void sendMessage() {
+    /*public void sendMessage() {
         Intent notificationIntent = new Intent(getContext(), TodoTabNotifBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 199, notificationIntent, 0);
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
@@ -99,7 +100,7 @@ public class HomeFragment extends Fragment {
         long futureInMillis = System.currentTimeMillis();
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent);
-    }
+    }*/
 
 
 }

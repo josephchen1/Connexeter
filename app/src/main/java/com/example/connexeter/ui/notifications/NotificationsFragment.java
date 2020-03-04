@@ -293,10 +293,91 @@ public class NotificationsFragment extends Fragment {
 
         eventList.add(
                 new Event(15,
-                        "test",
-                        "Phelps Commons",
-                        "2:50 PM ",
-                        "02/29/2020"
+                        "Last Day of Winter Term",
+                        "PEA",
+                        "12:30 PM ",
+                        "03/06/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(16,
+                        "Exeter Association of Rock Assembly",
+                        "Assembly Hall",
+                        "9:50 AM ",
+                        "03/03/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(17,
+                        "Spring Term classes begin",
+                        "PEA",
+                        "8:00 AM ",
+                        "03/23/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(18,
+                        "Saturday Classes",
+                        "PEA",
+                        "8:00 AM ",
+                        "04/04/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(19,
+                        "Climate Action Day",
+                        "PEA",
+                        "8:00 AM ",
+                        "04/24/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(20,
+                        "Saturday Classes",
+                        "PEA",
+                        "8:00 AM ",
+                        "04/25/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(21,
+                        "Saturday Classes",
+                        "PEA",
+                        "8:00 AM ",
+                        "05/16/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(22,
+                        "Exeter/Andover Games",
+                        "PEA",
+                        "8:00 AM ",
+                        "05/23/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(23,
+                        "School Ends",
+                        "PEA",
+                        "12:30 PM ",
+                        "06/04/2020"
+                )
+        );
+
+        eventList.add(
+                new Event(24,
+                        "Graduation",
+                        "PEA",
+                        "11:00 AM ",
+                        "06/07/2020"
                 )
         );
 

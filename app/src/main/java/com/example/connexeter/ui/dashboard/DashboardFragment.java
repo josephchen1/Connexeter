@@ -199,17 +199,17 @@ public class DashboardFragment extends Fragment {
                     );
 
                     addOLSList.add(
-                            new addOLS("4:15-5:05",1,"G","Your Class","XYZ-###",
+                            new addOLS("3:55-4:45",1,"G","Your Class","XYZ-###",
                                     "XYZ-###", "Your teacher")
                     );
 
                     addOLSList.add(
-                            new addOLS("5:10-6:00",1,"Q","Your Class","XYZ-###",
+                            new addOLS("4:50-6:00",1,"H Long","Your Class","XYZ-###",
                                     "XYZ-###", "Your teacher")
                     );
                     adapter = new addOLSAdapter(getActivity(),addOLSList);
                     recyclerView.setAdapter(adapter);
-                }
+                }//week 1 Thursday
                 if (i==6){ //week 2 Monday
                     addOLSList.clear();
                     addOLSList.add(
