@@ -10,10 +10,11 @@ Just the final project for CSC506: Network Mobile Architecture. Dylan and I want
 	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/todo.png" alt="Image of To-Do-Tab" width="200" height="">
 * OLS Tab
 	* In the OLS tab, students are able to input what class they have for each format. Then, after inputting the information, students are able to view their class schedule for each day of the week. Since Exeter has a different schedule every day and every week, this feature should be extremely useful as students no longer need to navigate to the online OLS page to check their daily schedule!
-	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/olsformat.png" alt="Image of OLS Tab Formatting" width="200" height=""> <img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/ols.png" alt="Image of OLS Tab Schedule" width="200" height="">
+	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/olsformat.png" alt="Image of OLS Tab Formatting" width="200" height=""> 
+	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/ols.png" alt="Image of OLS Tab Schedule" width="200" height="">
 * Events Tab
 	* In the events tab, students are able to view upcoming school events, such as dances, assemblies, and more! They will also get a notification 30-min before selected events so that they won’t forget to attend. 
-	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/event.png" alt="Image of Event-Tab" width="200" height="">
+	<img src="https://github.com/josephchen1/Connexeter/blob/master/README%20photos/events.png" alt="Image of Event-Tab" width="200" height="">
 
 # Authors
 * Joseph Chen
