@@ -7,7 +7,7 @@ Just the final project for CSC506: Network Mobile Architecture. Dylan and I want
 # Features
 * To-do Tab
 	* In the to-do tab, students are able to input different assignments and tasks. Primarily designed to be used as a homework to-do list, it can also function as a place to store shopping lists, daily reminders, and more! Simply input the task into the textbox, then press add. To mark as complete, simply tap the task on the list and it’ll resolve itself with a little message “Task Completed”.
-![Image of To-do Tab](https://github.com/josephchen1/Connexeter/blob/master/README%20photos/todo.png)
+![Image of To-do Tab](https://github.com/josephchen1/Connexeter/blob/master/README%20photos/todo.png =100x)
 * OLS Tab
 	* In the OLS tab, students are able to input what class they have for each format. Then, after inputting the information, students are able to view their class schedule for each day of the week. Since Exeter has a different schedule every day and every week, this feature should be extremely useful as students no longer need to navigate to the online OLS page to check their daily schedule!
 * Events Tab
